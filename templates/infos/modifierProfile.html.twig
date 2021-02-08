@@ -1,0 +1,21 @@
+{% extends 'infosUsers.html.twig' %}
+
+{% block title %} Modification du rofil de
+    {% for info in app.user.infos %}
+        {{info.prenom}} {{info.nom}}
+    {% endfor %} 
+{% endblock %}
+
+{% block body %}
+    {# grille de axentix #}
+    <div class="grix xs4 container mt-3">  {# xs4: si je veux avoir 2 colonnes: 3 et 4 par exemple#}
+        <div class="col-xs4">
+            <h1>Modification du rofil de
+                {% for info in app.user.infos %}
+                    {{info.prenom}} {{info.nom}}
+                {% endfor %} 
+            </h1>
+            {{form (form)}}
+        </div>
+    </div>
+{% endblock %}

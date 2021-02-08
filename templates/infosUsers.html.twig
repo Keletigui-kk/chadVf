@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- Axentix CSS minified version -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/css/axentix.min.css">
+            <!--lien w3-css-->
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <!--lien fontawesome-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">        
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="{{asset ('CSS/style.css')}}">
+
+    </head>
+    <body class="layout with-sidenav">
+    <header>
+        <nav class="navbar shadow-1 primary">
+        <img id="logo"src="{{asset('images/logochad.png')}}" alt="logo chad">
+        <button class="btn rounded-1 white hide-md-up sidenav-trigger small mr-2" data-target="main-sidenav">
+        Menu
+        </button>
+        
+        <a href="#" target="_blank" class="navbar-brand">CHAD</a>
+        <div class="navbar-menu ml-auto">
+        <a class="navbar-link hide-sm-down" href="{{path('home')}}">Accueil</a>
+        <a class="navbar-link hide-sm-down" href="{{path('evenements')}}">Evenements</a>
+        <a class="navbar-link hide-sm-down" href="{{path('infos_faq')}}">Faq</a>
+        <a class="navbar-link hide-sm-down" href="{{path('search_users')}}">Recherche</a>
+        {% if app.user %}
+            <a class="navbar-link hide-sm-down" href="{{path('infos')}}">Espace membre</a>
+        {% else %}
+            <a class="navbar-link hide-sm-down" href="{{ path('app_login')}}"  title="Connexion"></a>
+        {% endif %}
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a class="dashbordd" data-toggle="tooltip" data-placement="top" 
+            title="Dasbord" href="{{path('chad_admin')}}" style="padding-left:0px;">
+                <i class="fa fa-dashboard" style="color:red;"></i>
+            </a>
+        {% endif %} &nbsp;&nbsp;
+
+            {% if app.user %}
+                {% for info in app.user.infos %}
+                    {{info.prenom}}
+                {% endfor %}
+            <a class="navbar-link hide-sm-down" href="{{ path('app_logout')}}"  title="Déconnexion"><i class="fa fa-power-off" aria-hidden="true"></i></a>
+            {% else %} 
+            <a class="navbar-link hide-sm-down" href="{{ path('app_login')}}"  title="Connexion"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+            {% endif %}
+
+        
+        </div>
+           
+        </div>
+    </nav>
+    </header>
+
+
+        {# la side navbar de axentix pour faire ma page de profil #}
+        <div id="example-sidenav" data-ax="sidenav" class="sidenav shadow-1 large fixed white">
+            <div class="sidenav-header">
+                <button data-target="example-sidenav" class="sidenav-trigger"><i class="fas fa-times"></i></button>
+                {% for info in app.user.infos %}
+                    <img id="foto" src="{{asset('/images/users/' ~ info.imageName)}}">
+                   
+                   {% for info in app.user.infos %}
+                        {% if info.isActivate and info.category %}
+                        <div class="w3-col s8 col-md-12 w3-bar text-center">
+                            Département:
+                            {{ info.category }}
+                        </div>
+                        {% else %}
+                            Aucun département
+                        {% endif %}
+                    {% endfor %}
+                    
+                {% endfor %}
+
+
+            </div>
+             {% for info in app.user.infos %}
+            <div>
+               <h6 style="color: #fff" class="text-center"><header style="background-color:#2d4873"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;<a href="{{ path('modif_infos', {'id': info.id})}}" >Modifier mon profil</a></header></h6> 
+            </div>
+           
+            <div>
+               <h6 style="color: #fff" class="text-center"><header style="background-color:#2d4873"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;<a href="{{path('users_pass_modifier')}}">Modifier mot de passe</a></header></h6> 
+            </div>
+            <div>
+               <h6 style="color: #fff" class="text-center"><header style="background-color:#2d4873"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<a href="{{path('infos_details')}}">Voir mon profil</a></header></h6> 
+            </div>
+                 {% if info.isActivate %}
+            <div>
+               <h6 style="color: #fff" class="text-center"><header style="background-color:#2d4873"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;<a href="{{path('infos_pdf')}}">Mon attestation</a></header></h6> 
+            </div>
+                {% endif %}
+             {% endfor %} 
+            
+        </div>
+
+        <main> <br>
+        <!-- Code here the main content -->
+        
+             <button data-target="example-sidenav"
+                class="btn rounded-1 press amaranth dark-1 sidenav-trigger hide-md-up">
+                Open sidenav
+            </button>
+            {% block body %}{% endblock %}
+        </main>
+
+        {{include ('_partials/footer.html.twig')}}
+
+    <!-- Axentix JS minified version -->
+    <script src="https://cdn.jsdelivr.net/npm/axentix@1.0.0/dist/js/axentix.min.js"></script>
+        {% block javascripts %} 
+        {% endblock %}
+            {# script pour gerer la sidenav #}
+        <script>
+            var sidenav = new Sidenav('#exemple-sidenav');
+        </script>
+        <script src="{{asset('JS/script.js')}}"></script>
+    </body>
+</html>

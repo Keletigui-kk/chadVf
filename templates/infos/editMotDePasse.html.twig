@@ -1,0 +1,44 @@
+{% extends 'infosUsers.html.twig' %}
+
+{% block title %} Modification du rofil de
+    {% for info in app.user.infos %}
+        {{info.prenom}} {{info.nom}}
+    {% endfor %} 
+{% endblock %}
+
+{% block body %}
+    {# grille de axentix #}
+    <div class="grix xs4 container mt-3">  {# xs4: si je veux avoir 2 colonnes: 3 et 4 par exemple#}
+      
+      {# On fait une boucle pour afficher une alerte après modif du mot de passe #}
+            {% for message in app.flashes('error') %}
+                <div class="col-xs4">
+                    <div class="p-3 my-2 rounded-2 error">{{ message }}</div>
+                </div>
+            {% endfor %}
+        <div class="col-xs4">
+            <h1>Modification du mot de passe de
+                {% for info in app.user.infos %}
+                    {{info.prenom}} {{info.nom}}
+                {% endfor %} 
+            </h1>
+            
+
+
+            {# je fais un formulaire à la main pour modifier mon mot de passe #}
+
+            <form method="post">   <!--on ne met pas d'action comme ça ça recharge la même page-->
+                <div class="form-field">
+                    <label for="pass">Mot de passe</label>
+                    <input type="password" id="pass" name="pass" class="form-control rounded-1" />
+                </div>
+                <div class="form-field">
+                    <label for="pass">Confirmez le mot de passe</label>
+                    <input type="password" id="pass2" name="pass2" class="form-control rounded-1" />
+                </div>
+                    <button class="btn shadow-1 rounded-1 blue">Valider</button>
+            </form>  
+            
+        </div>
+    </div>
+{% endblock %}

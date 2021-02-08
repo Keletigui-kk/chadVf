@@ -16,3 +16,6 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Entity'
                 prefix: 'App\Entity'
                 alias: App
+        # dql:  # doctrine query language
+        #     string_functions:  # gestions des chaines de caractère de doctrine_migrations
+        #         MATCH_AGAINST: App\Extensions\Doctrine\MatchAgainst    # la route du fichier : App c'est src

@@ -1,0 +1,76 @@
+<div class="w3-card col-md-4 mx-auto p-0 mt-5 mb-5" id="register">
+    <form method="post">
+        <header class="w3-container w3-green">
+            <h3>CONNEXION</h3>
+        </header>
+        <div class="p-3 w3-container">
+           <div class="w3-row w3-section">
+                <div class="w3-rest">
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="w3-input" placeholder="Adresse email" required autofocus>
+                </div>
+            </div>
+           <div class="w3-row w3-section">
+                <div class="w3-rest">
+                    <input type="password" name="password" id="inputPassword" class="w3-input" placeholder="************" required>
+                </div>
+            </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                <div class="checkbox mb-3 mt-2">
+                    <label>
+                        <input class="w3-check" type="checkbox" name="_remember_me"> Garder ma section active
+                    </label>
+                </div>
+            <div class="row">
+                <div class="col-md-4"><button class="w3-btn w3-green btn-block" type="submit">CONNEXION</button></div>
+                <div class="col-md-4 text-center"><a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a></div>
+                <div class="col-md-4 text-center"><a href="{{ path('app_register') }}">Créer un compte</a></div>
+            </div>
+        </div>
+    </form>    
+</div>
+
+
+<div class="w3-container">
+    <div class="w3-row">
+
+        <div class="w3-card w3-col s4">
+                <header class="w3-container w3-blue">
+            <h1>Header</h1>
+            </header>
+
+            <div class="w3-container">
+            <p>Lorem ipsum...</p>
+            </div>
+
+            <footer class="w3-container w3-blue">
+            <h5>Footer</h5>
+            </footer>
+        </div>
+        <div class="w3-card w3-col s4">
+            <header class="w3-container w3-blue">
+        <h1>Header</h1>
+        </header>
+
+        <div class="w3-container">
+            <p>Lorem ipsum...</p>
+            </div>
+
+            <footer class="w3-container w3-blue">
+            <h5>Footer</h5>
+            </footer>
+        </div>
+        <div class="w3-card w3-col s4">
+                <header class="w3-container w3-blue">
+            <h1>Header</h1>
+            </header>
+
+            <div class="w3-container">
+            <p>Lorem ipsum...</p>
+            </div>
+
+            <footer class="w3-container w3-blue">
+            <h5>Footer</h5>
+            </footer>
+        </div>
+    </div>
+</div>

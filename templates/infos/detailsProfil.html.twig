@@ -1,0 +1,64 @@
+{% extends 'infosUsers.html.twig' %}
+
+{% block title %} Profil de
+            {% for info in app.user.infos %}
+               {{info.prenom}} {{info.nom}}
+            {% endfor %} 
+{% endblock %}
+
+{% block body %}
+
+
+    {# grille de axentix #}
+    <div class="grix xs4 container mt-3 text-center">  {# xs4: si je veux avoir 2 colonnes: 3 et 4 par exemple#}
+        {# On fait une boucle pour afficher une alerte après la mise à jour du profile #}
+        {% for message in app.flashes('message') %}
+            <div class="col-xs4">
+                <div class="p-3 my-2 rounded-2 success">{{ message }}</div>
+            </div>
+        {% endfor %}
+
+        <div class="col-xs4">
+            <h1>Profil de
+                {% for info in app.user.infos %}
+                {{info.prenom}} {{info.nom}}
+                {% endfor %} 
+            </h1>
+        </div>
+        {% for info in app.user.infos %}
+            <div class="col-xs1">Nom: </div>
+            <div class="col-xs3">{{info.nom}}</div>
+            <div class="col-xs1">Prenom: </div>
+            <div class="col-xs3">{{info.prenom}}</div>
+            {# <div class="col-xs1">Date de naissance: </div>
+            <div class="col-xs3">{{info.birthday}}</div> #}
+            <div class="col-xs1">Lieu de naissance: </div>
+            <div class="col-xs3">{{info.lieudenaissance}}</div>
+            <div class="col-xs1">Adresse: </div>
+            <div class="col-xs3">{{info.adresse}}</div>            
+            <div class="col-xs1">Ville: </div>
+            <div class="col-xs3">{{info.ville}}</div> 
+            <div class="col-xs1">Code postale: </div>
+            <div class="col-xs3">{{info.codepostale}}</div>
+            <div class="col-xs1">Pays: </div>
+            <div class="col-xs3">{{info.pays}}</div>
+            <div class="col-xs1">Téléphone: </div>
+            <div class="col-xs3">{{info.tel}}</div>
+            <div class="col-xs1">Lieu de travail: </div>
+            <div class="col-xs3">{{info.lieudetravail}}</div>
+            <div class="col-xs1">Parcours professionnelle: </div>
+            <div class="col-xs3">{{info.parcoursprof}}</div> 
+            <div class="col-xs1">Parcours scolaire: </div>
+            <div class="col-xs3">{{info.parcoursscolaire}}</div>
+            <div class="col-xs1">Nationalité: </div>
+            <div class="col-xs3">{{info.nationalite}}</div>
+            <div class="col-xs1">Civilité: </div>
+            <div class="col-xs3">{{info.civilite}}</div>
+        {% endfor %} 
+        <div class="col-xs1">Email: </div>
+        <div class="col-xs3">{{app.user.email}}</div> 
+        
+    </div> 
+           
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Complétez votre profil{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1 class="text-center">Complétez votre profil</h1>
+        <main class="row justify-content-center" id='infos'>
+            <div class="my-custom-class-for-errors">
+                {{ form_errors(form)}}
+            </div>
+            {# <div class="mx-auto"> #}
+                {{form (form)}}
+        </main>
+    </main>
+{% endblock %}

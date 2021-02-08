@@ -1,0 +1,42 @@
+.primary{
+    /* background-color: #3f48cc; */
+    background-color: #2d4873;
+    /* height: 200px; */
+}
+
+nav a .fa{
+    padding: 20px 0px;
+}
+
+#login, #reset_password{
+    background-color: #e5e5e5;
+    padding: 20px 20px;
+    margin: 50px;
+}
+
+#infos{
+    padding: 20px 20px;
+    margin: 50px;  
+}
+
+#register{
+    background-color: #e5e5e5;
+    padding: 20px 20px;
+    margin: 50px;
+}
+#logo{
+    height: 40px;
+    width: 40px;
+   }
+
+#foto{
+    width: 100px;
+    height: 100px;
+    border-radius:50%;
+}
+
+#paypal{
+    width: 200px;
+    height: 100px;
+}
+

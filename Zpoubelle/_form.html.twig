@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    {# Si la route est "infos_modif on affiche les images pour pouvoir les modifier#}
+	{% if app.request.attributes.get('_route') == 'infos_modif' %}
+        <h2>Images</h2>
+        {% for image in info.images %}
+            <div>
+                <img src="{{ asset('/uploads/' ~ image.nom) }}" alt="Photo" width="150">
+
+                {# On ajoute un lien permettant de supprimer une image (sera géré en Ajax) #}
+                <a href="{{ path('infos_delete_image', {id: image.id})}}" data-delete data-token="{{ csrf_token('delete' ~ image.id )}}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

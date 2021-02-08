@@ -1,0 +1,57 @@
+{% extends 'infosUsers.html.twig' %}
+
+{% block title %} Profil de
+            {% for info in app.user.infos %}
+               {{info.prenom}} {{info.nom}}
+            {% endfor %} 
+{% endblock %}
+
+{% block body %}
+  
+    </div>
+
+     {# On fait une boucle pour afficher une alerte après la mise à jour du profile #}
+        {% for message in app.flashes('message') %}
+            <div class="col-xs4">
+                <div class="p-3 my-2 rounded-2 success">{{ message }}</div>
+            </div>
+        {% endfor %}
+
+    <div class="col-xs4">
+        <h1 class="text-center">Bienvevue
+            {% for info in app.user.infos %}
+               {{info.prenom}} {{info.nom}}
+            {% endfor %} 
+        </h1>
+    </div>
+
+        {% for info in app.user.infos %}
+                {% if info.isActivate %}
+                
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4"> 
+                        <h3 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Payer mon Adhésion</header></h3> 
+                        <a href="https://paypal.me/Chapelledesadorateur?locale.x=fr_FR"><img id="paypal" src="{{asset('images/paypal.png')}}" alt="Images paypal" class="rounded mx-auto d-block"> </a> 
+                    </div>
+                    <div class="col-md-4">
+                        <h3 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Payer ma cotisation</header></h3> 
+                        <a href="https://paypal.me/Chapelledesadorateur?locale.x=fr_FR"><img id="paypal" src="{{asset('images/paypal.png')}}" alt="Images paypal" class="rounded mx-auto d-block"> </a> 
+                    </div>
+                    <div class="col-md-4">
+                        <h3 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Faire un don</header></h3> 
+                        <a href="https://paypal.me/Chapelledesadorateur?locale.x=fr_FR"><img id="paypal" src="{{asset('images/paypal.png')}}" alt="Images paypal" class="rounded mx-auto d-block"> </a> 
+                    </div>
+                </div>
+            </div>
+                {% else %}
+                    {{include ('infos/faq.html.twig')}}
+                {% endif %}
+        {% endfor %}
+       
+        
+           
+            {# <button class="btn btn-primary"> <a href="{{path('infos_pdf')}}">Imprimer mon attestation</a></button> #}
+            {# {{include ('infos/paypal.html.twig')}} #}
+{% endblock %}
+
