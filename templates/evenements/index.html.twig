@@ -4,6 +4,21 @@
 
 {% block body %}
  {% for evenement in evenements %}
-    <h1> {{evenement.titre}}</h1>
+    <div class="container">
+        <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Evenements</header></h1> 
+                    {% for evenement in evenements %}
+                    <h1 class="text-center"> {{evenement.titre}}</h1> 
+                    <p>{{evenement.description}}</p> 
+                    <p>Date : {{evenement.datedebut | date('d/m/Y')}} </p>
+                    <p>Heure de début :{{evenement.datedebut | date('H:i')}}</p>
+                    <p>Heure de fin :{{evenement.datefin | date('H:i')}}</p>
+                    <p>Adresse :{{evenement.lieu}} </p>
+                    {% endfor %}
+
+                </div>
+        </div>
+    </div>
 {% endfor %}
 {% endblock %}
