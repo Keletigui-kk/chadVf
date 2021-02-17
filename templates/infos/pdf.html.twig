@@ -1,0 +1,59 @@
+{% extends 'infosUsers.html.twig' %}
+ 
+{% block title %}Mon attestation{% endblock %}
+ 
+{% block body %}
+ 
+ 
+<div class="w3-main w3-light-gray pb-5" style="margin-top:20px;">
+  <div class="w3-container" style="padding-top:30px"></div>
+  {# {% include('account/search.html.twig') %} #}
+    <div class="container" style="padding-top:30px">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button  class="w3-btn w3-blue-grey" onclick="window.print()"><i class="fas fa-print"></i> Imprimer</button>
+            </div>
+        </div>
+    </div> 
+    
+    {% for info in app.user.infos %}
+        <div class="w3-container" style="padding-top:30px"></div>
+            <div class="w3-card container w3-padding" style=" padding-bottom: 50px; font-family: Helvetica; font-size: 1.4em;" id="content">
+                <div class="container w3-padding-16">
+                     {% if info is defined %}
+                    <div class="row">
+                        <div class="col-3 mt-5"><img src="{{ asset('images/logochad.png' )}}" alt="logo chad" style="width: 70%;"></div>
+                        <div class="col-9"></div><br />
+                        <div class="col-12 mt-5 text-center w3-border"><h2>ATTESTATION D'ADHÉSION</h2></div>
+                        <div class="col-12 mt-5">
+                            <p style="margin-top: 200px;">Je soussigné, (nom président), Président de l'association </p>
+                            <p class="mt-5 text-center">CHAPELLE DES ADORATEURS</p>
+                            <p class="mt-5">Certifie que : {{info.civilitesexe}}</p>
+                            <p class="text-center">
+                               <b> 
+                                   {{ info.prenom }} {{ info.nom | upper }}<br>
+                                   {{ info.adresse }} <br> {{ info.codepostale }}, {{ info.ville }}
+                                </b>  
+                            </p>
+                            <p>
+                                est adhérent(e) à notre association depuis le 
+                               {{ app.user.registeredAt | date('d/m/Y') }} 
+                                
+                             
+                            </p>
+                            <p class="text-center" style="margin-top: 100px;">
+                                Le président <br>
+                                (nom président) <br />
+                                Signature
+                            </p>
+                        </div>
+                    </div>
+                {% else %}
+                {% endif %}
+                </div>
+            </div>
+  {% endfor %}
+  
+</div><!-- End page content -->
+{% if block('footer') is defined %}{% endif %}
+{% endblock %}

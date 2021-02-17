@@ -24,6 +24,16 @@ class InfosType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('civilitesexe',ChoiceType::class,[
+                'label' => 'Situation  familiale',
+                'help' => 'Veuillez choisir votre situation',
+                'choices' => [
+                    'Mme' => 'Mme',
+                    'Mlle' => 'Mlle',
+                    'Mr' => 'Mr'
+                    
+                ],
+            ])
             ->add('nom',TextType::class,[
                 'label' => 'Nom',
                 'attr' => [
@@ -118,7 +128,8 @@ class InfosType extends AbstractType
                     'Pacsé(e)' => 'Pacsé(e)',
                     'Veuf(ve)' => 'Veuf(ve)'
                 ],
-            ])
+            ]) 
+           
             // on ajoute le cham images qui correspond à une entité liée à infos
             // ce champ n'est pas lié à la base de données donc mettre mapped à false
             ->add('imageFile', VichImageType::class)

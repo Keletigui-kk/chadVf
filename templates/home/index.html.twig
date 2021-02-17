@@ -4,30 +4,25 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="text-center">La chapelle des adorateurs</h1>
-        <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id nobis sequi unde non fugiat eligendi eius illo maiores nam quisquam, vel itaque magni! Deleniti nulla nostrum odit, dolorem veritatis ipsam?
-        Debitis porro natus ratione, reprehenderit minus quo pariatur itaque quidem quaerat aperiam mollitia, officia totam quam eos at aspernatur dolore fugiat laborum repudiandae voluptate. Inventore corrupti exercitationem possimus repellat corporis!
-        Nisi quo nihil rem eveniet adipisci quos eius soluta et exercitationem necessitatibus! Odit vel quisquam necessitatibus assumenda excepturi perspiciatis asperiores rem. Consequuntur, similique. Laboriosam nemo blanditiis itaque ipsam sequi quas!
-        Delectus nisi, consequatur quam fuga aliquam quasi voluptas praesentium eaque eos nam unde illo consequuntur quaerat eligendi dolores neque, ex reprehenderit quidem magni. Iure laboriosam tempore quae voluptatibus placeat quidem.</div> <br><br>
+        <h1 class="text-center"> La chapelle des adorateurs</h1>
+        <p>L'association “ CHAPELLE DES ADORATEURS ” en sigle CHAD oeuvre 
+            dans le domaine de la vulgarisation de la culture gospel au travers des activités
+            musicales, des rassemblements, des conférences.</p>
         
-        <div class="row">
-            <div class="col-md-4">
-               <h1 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Adhésions</header></h1> 
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati velit hic impedit officia soluta, assumenda voluptates maxime sunt cum nobis! Magnam eligendi consectetur fugit iste unde. Eligendi ut ullam maiores.
-            </div>
-            <div class="col-md-4">
-               <h1 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Cotisations</header></h1> 
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam voluptatum assumenda quis? Sed cupiditate voluptate, iusto earum deleniti et accusamus aperiam, laboriosam quisquam culpa adipisci, odio iure? Excepturi, in pariatur.
-            </div>
-            <div class="col-md-4">
-               <h1 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Dons</header></h1> 
-               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis, eveniet atque? Consectetur modi sequi natus consequuntur consequatur? Dolor sint corporis accusamus natus aliquid ullam error? Nulla ea perferendis hic vero!
-            </div>
-        </div> <br><br><br>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                <h1 style="color: #fff" class="text-center"><header style="background-color:#2d4873">Evenements</header></h1> 
+                {% for evenement in evenements %}
+                   <h1 class="text-center"> {{evenement.titre}}</h1> 
+                <p>{{evenement.description}}</p> 
+                <p>Date : {{evenement.datedebut | date('d/m/Y')}} </p>
+                <p>Heure de début :{{evenement.datedebut | date('H:i')}}</p>
+                <p>Heure de fin :{{evenement.datefin | date('H:i')}}</p>
+                <p>Adresse :{{evenement.lieu}} </p>
+                {% endfor %}
 
-                {# {% if not app.user.infos %}
-                    <div class="btn shadow-1 rounded-1 blue"><a class="navbar-link hide-sm-down" href="{{path('infos_ajout')}}">Complétez votre profil pour accéder à votre espace membre</a></div>
-                {% endif %} #}
-
+                </div>
+            </div>
+           
     </div>
 {% endblock %}

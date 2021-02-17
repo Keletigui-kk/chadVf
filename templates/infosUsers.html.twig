@@ -27,7 +27,7 @@
         <a class="navbar-link hide-sm-down" href="{{path('home')}}">Accueil</a>
         <a class="navbar-link hide-sm-down" href="{{path('evenements')}}">Evenements</a>
         <a class="navbar-link hide-sm-down" href="{{path('infos_faq')}}">Faq</a>
-        <a class="navbar-link hide-sm-down" href="{{path('search_users')}}">Recherche</a>
+        <a class="navbar-link hide-sm-down" href="{{path('search_users')}}">Recherche <i class="fa fa-search" aria-hidden="true"></i></a>
         {% if app.user %}
             <a class="navbar-link hide-sm-down" href="{{path('infos')}}">Espace membre</a>
         {% else %}
@@ -35,8 +35,8 @@
         {% endif %}
 
         {% if is_granted('ROLE_ADMIN') %}
-            <a class="dashbordd" data-toggle="tooltip" data-placement="top" 
-            title="Dasbord" href="{{path('chad_admin')}}" style="padding-left:0px;">
+            <a class="dashbord" data-toggle="tooltip" data-placement="top" 
+            title="Dashbord" href="{{path('chad_admin')}}" style="padding-left:0px;">
                 <i class="fa fa-dashboard" style="color:red;"></i>
             </a>
         {% endif %} &nbsp;&nbsp;
@@ -91,7 +91,7 @@
             <div>
                <h6 style="color: #fff" class="text-center"><header style="background-color:#2d4873"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;<a href="{{path('infos_details')}}">Voir mon profil</a></header></h6> 
             </div>
-                 {% if info.isActivate %}
+                 {% if info.isActivate and info.adhesionPaid %}
             <div>
                <h6 style="color: #fff" class="text-center"><header style="background-color:#2d4873"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp;<a href="{{path('infos_pdf')}}">Mon attestation</a></header></h6> 
             </div>

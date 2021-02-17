@@ -1,6 +1,7 @@
 .primary{
     /* background-color: #3f48cc; */
     background-color: #2d4873;
+    /* margin: 30px; */
     /* height: 200px; */
 }
 
@@ -39,4 +40,6 @@ nav a .fa{
     width: 200px;
     height: 100px;
 }
+
+
 

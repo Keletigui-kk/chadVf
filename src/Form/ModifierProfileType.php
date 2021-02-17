@@ -23,6 +23,16 @@ class ModifierProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('civilitesexe',ChoiceType::class,[
+                'label' => 'Civilité',
+                'help' => 'Veuillez choisir votre situation',
+                'choices' => [
+                    'Mme' => 'Mme',
+                    'Mlle' => 'Mlle',
+                    'Mr' => 'Mr'
+                    
+                ],
+            ])
             ->add('nom',TextType::class)
             ->add('prenom',TextType::class)
             ->add('birthday',BirthdayType::class)
@@ -38,7 +48,7 @@ class ModifierProfileType extends AbstractType
             ->add('parcoursscolaire',TextareaType::class)
             ->add('nationalite',TextType::class)
             ->add('civilite',ChoiceType::class,[
-                'label' => 'Civilité',
+                'label' => 'Situation  familiale',
                 'help' => 'Veuillez choisir votre situation',
                 'choices' => [
                     'Marié(e)' => 'Marié(e)',

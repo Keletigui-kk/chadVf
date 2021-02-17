@@ -64,6 +64,7 @@ class Infos
     public function __construct()
     {
         $this->updatedAt = new \DateTime();
+        $this->cotisations = new ArrayCollection();
     }
 
    
@@ -165,10 +166,23 @@ class Infos
      */
     private $category;
 
-    // /**
-    //  * @ORM\OneToOne(targetEntity=Images::class, mappedBy="infos", cascade={"persist"})
-    //  */
-    // private $images;
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $civilitesexe;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Cotisations::class, mappedBy="infos")
+     */
+    private $cotisations;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $adhesionPaid;
+
+
+    
     
     # Surcharge
     public function __toString()
@@ -400,24 +414,7 @@ class Infos
         return $this;
     }
 
-    // public function getImages(): ?Images
-    // {
-    //     return $this->images;
-    // }
-
-    // public function setImages(Images $images): self
-    // {
-    //     // set the owning side of the relation if necessary
-    //     if ($images->getInfos() !== $this) {
-    //         $images->setInfos($this);
-    //     }
-
-    //     $this->images = $images;
-
-    //     return $this;
-    // }
-
-
+   
     
     /**
      * Si vous téléchargez manuellement un fichier (c'est-à-dire sans utiliser Symfony Form), assurez-vous qu'une instance 
@@ -452,6 +449,60 @@ class Infos
     public function getImageName(): ?string
     {
         return $this->imageName;
+    }
+
+    public function getCivilitesexe(): ?string
+    {
+        return $this->civilitesexe;
+    }
+
+    public function setCivilitesexe(string $civilitesexe): self
+    {
+        $this->civilitesexe = $civilitesexe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Cotisations[]
+     */
+    public function getCotisations(): Collection
+    {
+        return $this->cotisations;
+    }
+
+    public function addCotisation(Cotisations $cotisation): self
+    {
+        if (!$this->cotisations->contains($cotisation)) {
+            $this->cotisations[] = $cotisation;
+            $cotisation->setInfos($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCotisation(Cotisations $cotisation): self
+    {
+        if ($this->cotisations->removeElement($cotisation)) {
+            // set the owning side to null (unless already changed)
+            if ($cotisation->getInfos() === $this) {
+                $cotisation->setInfos(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getAdhesionPaid(): ?bool
+    {
+        return $this->adhesionPaid;
+    }
+
+    public function setAdhesionPaid(?bool $adhesionPaid): self
+    {
+        $this->adhesionPaid = $adhesionPaid;
+
+        return $this;
     }
 
 

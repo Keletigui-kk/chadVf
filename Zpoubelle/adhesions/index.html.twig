@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adhesions index{% endblock %}
+
+{% block body %}
+    <h1>Adhesions index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>IsPaid</th>
+                <th>Somme</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adhesion in adhesions %}
+            <tr>
+                <td>{{ adhesion.id }}</td>
+                <td>{{ adhesion.isPaid ? 'Yes' : 'No' }}</td>
+                <td>{{ adhesion.somme }}</td>
+                <td>
+                    <a href="{{ path('adhesions_show', {'id': adhesion.id}) }}">show</a>
+                    <a href="{{ path('adhesions_edit', {'id': adhesion.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('adhesions_new') }}">Create new</a>
+{% endblock %}

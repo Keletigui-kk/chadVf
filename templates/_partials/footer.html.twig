@@ -1,5 +1,17 @@
 {% block body %} 
-    <footer class="footer primary">
-      Copyright © 2020 - Example
-    </footer>
+  <footer class="footer primary txt-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>&copy; Copyright {{'now' | date('Y')}} La chappelle des adorateurs</h5>
+        </div>
+
+        <div class="col-md-6">
+            <a href="https://www.facebook.com"><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
 {% endblock %}

@@ -9,14 +9,16 @@ use App\Entity\Users;
 use App\Classe\Search;
 use App\Entity\Images;
 use App\Form\InfosType;
-use App\Form\ModifierProfileType;
+use App\Entity\Adhesions;
 use App\Form\SearchUsersType;
+use App\Form\ModifierProfileType;
 use App\Repository\InfosRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
 use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -163,40 +165,7 @@ class InfosController extends AbstractController
         ]);
     }
 
-
-
-
-    
-    # On fait une route pour supprimer une image 
-    /**
-     * @Route("/supprime/image/{id}", name="infos_delete_image", methods={"DELETE"})
-     */
-    public function deleteImage(Images $image, Request $request){
-        $data = json_decode($request->getContent(), true);  # les données nous sont transportés par json 
-
-        // On vérifie si le token est valide
-        if($this->isCsrfTokenValid('delete'.$image->getId(), $data['_token'])){
-            
-            // On récupère le nom de l'image si le token est valide
-            $nom = $image->getNom();
-            // On supprime le fichier
-            unlink($this->getParameter('images_directory').'/'.$nom); # on vient chercher limage ou elle est stocké pour la supprimer'
-
-            // On supprime l'entrée de la base
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($image);
-            $em->flush();
-
-            // On répond en json
-            return new JsonResponse(['success' => 1]);  
-        }else{
-            return new JsonResponse(['error' => 'Token Invalide'], 400);  # on affiche une page 400 si le token n'est pas valide
-        }
-    }
-
-
-
-    
+       
     
     # Modification de mot de passe
     /**
@@ -226,10 +195,7 @@ class InfosController extends AbstractController
 
 
 
-
-
     # generation d'un fichier pdf
-
     
     /**
     * @Route("/pdf", name="infos_pdf", methods={"GET"})
@@ -246,12 +212,12 @@ class InfosController extends AbstractController
          $dompdf = new Dompdf($pdfOptions);
          $infosPdf = $infosRepository->findAll();
          
-         return $this->render('infos/testPdf.html.twig', [
+         return $this->render('infos/pdf.html.twig', [
             'infos' => $infosPdf,
          ]);
          
          // Retrieve the HTML generated in our twig file
-         $html = $this->renderView('infos/testPdf.html.twig', [
+         $html = $this->renderView('infos/pdf.html.twig', [
             'infos' => $infosPdf,
          ]);
          
@@ -271,5 +237,5 @@ class InfosController extends AbstractController
              "Attachment" => true
          ]);
     }
-
+     
 }

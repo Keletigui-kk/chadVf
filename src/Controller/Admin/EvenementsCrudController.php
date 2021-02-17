@@ -4,8 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Evenements;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 
 class EvenementsCrudController extends AbstractCrudController
@@ -21,9 +22,10 @@ class EvenementsCrudController extends AbstractCrudController
         return [
             // IdField::new('id','Id'),
             TextField::new('titre','Titre'),
-            TextField::new('description','Description'),
-            DateField::new('datedebut','Date de début'),
-            DateField::new('datefin','Date de fin')
+            TextareaField::new('description','Description'),
+            DateTimeField::new('datedebut','Date de début'),
+            DateTimeField::new('datefin','Date de fin'),
+            TextField::new('lieu', 'Lieu'),
         ];
     }
     

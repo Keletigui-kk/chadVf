@@ -37,6 +37,11 @@ class Evenements
      */
     private $datefin;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $lieu;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +77,13 @@ class Evenements
         return $this->datedebut;
     }
 
+    public function setDatedebut(\DateTimeInterface $datedebut): self
+    {
+        $this->datedebut = $datedebut;
+
+        return $this;
+    }
+    
     public function setDatefin(\DateTimeInterface $datefin): self
     {
         $this->datefin = $datefin;
@@ -84,10 +96,16 @@ class Evenements
         return $this->datefin;
     }
 
-    public function setDatedebut(\DateTimeInterface $datefin): self
+    public function getLieu(): ?string
     {
-        $this->datefin = $datefin;
+        return $this->lieu;
+    }
+
+    public function setLieu(string $lieu): self
+    {
+        $this->lieu = $lieu;
 
         return $this;
     }
+
 }

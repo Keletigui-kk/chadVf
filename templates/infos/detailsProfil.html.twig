@@ -18,45 +18,82 @@
             </div>
         {% endfor %}
 
-        <div class="col-xs4">
+        {# <div class="col-xs4">
             <h1>Profil de
                 {% for info in app.user.infos %}
                 {{info.prenom}} {{info.nom}}
                 {% endfor %} 
             </h1>
-        </div>
+        </div> #}
         {% for info in app.user.infos %}
-            <div class="col-xs1">Nom: </div>
-            <div class="col-xs3">{{info.nom}}</div>
-            <div class="col-xs1">Prenom: </div>
-            <div class="col-xs3">{{info.prenom}}</div>
-            {# <div class="col-xs1">Date de naissance: </div>
-            <div class="col-xs3">{{info.birthday}}</div> #}
-            <div class="col-xs1">Lieu de naissance: </div>
-            <div class="col-xs3">{{info.lieudenaissance}}</div>
-            <div class="col-xs1">Adresse: </div>
-            <div class="col-xs3">{{info.adresse}}</div>            
-            <div class="col-xs1">Ville: </div>
-            <div class="col-xs3">{{info.ville}}</div> 
-            <div class="col-xs1">Code postale: </div>
-            <div class="col-xs3">{{info.codepostale}}</div>
-            <div class="col-xs1">Pays: </div>
-            <div class="col-xs3">{{info.pays}}</div>
-            <div class="col-xs1">Téléphone: </div>
-            <div class="col-xs3">{{info.tel}}</div>
-            <div class="col-xs1">Lieu de travail: </div>
-            <div class="col-xs3">{{info.lieudetravail}}</div>
-            <div class="col-xs1">Parcours professionnelle: </div>
-            <div class="col-xs3">{{info.parcoursprof}}</div> 
-            <div class="col-xs1">Parcours scolaire: </div>
-            <div class="col-xs3">{{info.parcoursscolaire}}</div>
-            <div class="col-xs1">Nationalité: </div>
-            <div class="col-xs3">{{info.nationalite}}</div>
-            <div class="col-xs1">Civilité: </div>
-            <div class="col-xs3">{{info.civilite}}</div>
+        <div class="containter">
+            <div class="row">
+               <table  class="table-bordered table-striped center">
+                    <tbody>
+                        <tr>
+                            <td>Nom:</td> 
+                            <td>{{info.nom}}</td>
+                        </tr>
+                         <tr>
+                            <td>Prenom:</td> 
+                            <td>{{info.prenom}}</td>
+                        </tr> 
+                        <tr>
+                            <td>Date de naissance:</td> 
+                            <td>{{info.birthday | date ('m/d/y')}}</td>
+                        </tr>
+                        <tr>
+                            <td>Lieu de naissance:</td> 
+                            <td>{{info.lieudenaissance}}</td>
+                        </tr>
+                        <tr>
+                            <td>Adresse:</td> 
+                            <td>{{info.adresse}}</td>
+                        </tr>
+                        <tr>
+                            <td>Ville:</td> 
+                            <td>{{info.ville}}</td>
+                        </tr>
+                        <tr>
+                            <td>Code postale:</td> 
+                            <td>{{info.codepostale}}</td>
+                        </tr>
+                        <tr>
+                            <td>Pays:</td> 
+                            <td>{{info.pays}}</td>
+                        </tr>
+                        <tr>
+                            <td>Téléphone:</td> 
+                            <td>{{info.tel}}</td>
+                        </tr>
+                        <tr>
+                            <td>Lieu de travail:</td> 
+                            <td>{{info.lieudetravail}}</td>
+                        </tr> 
+                        <tr>
+                            <td>Parcours professionnel:</td> 
+                            <td>{{info.parcoursprof}}</td>
+                        </tr>
+                        <tr>
+                            <td>Parcours scolaire:</td> 
+                            <td>{{info.parcoursscolaire}}</td>
+                        </tr>
+                        <tr>
+                            <td>Nationalité:</td> 
+                            <td>{{info.nationalite}}</td>
+                        </tr>
+                        <tr>
+                            <td>Civilité:</td> 
+                            <td>{{info.civilite}}</td>
+                        </tr>
+                    </tbody>
+               </table>
+            </div>
+        </div>
+            
         {% endfor %} 
-        <div class="col-xs1">Email: </div>
-        <div class="col-xs3">{{app.user.email}}</div> 
+        {# <div class="col-xs1">Email: </div>
+        <div class="col-xs3">{{app.user.email}}</div>  #}
         
     </div> 
            
