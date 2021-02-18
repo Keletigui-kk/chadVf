@@ -171,10 +171,7 @@ class Infos
      */
     private $civilitesexe;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Cotisations::class, mappedBy="infos")
-     */
-    private $cotisations;
+    
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
@@ -463,35 +460,7 @@ class Infos
         return $this;
     }
 
-    /**
-     * @return Collection|Cotisations[]
-     */
-    public function getCotisations(): Collection
-    {
-        return $this->cotisations;
-    }
-
-    public function addCotisation(Cotisations $cotisation): self
-    {
-        if (!$this->cotisations->contains($cotisation)) {
-            $this->cotisations[] = $cotisation;
-            $cotisation->setInfos($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCotisation(Cotisations $cotisation): self
-    {
-        if ($this->cotisations->removeElement($cotisation)) {
-            // set the owning side to null (unless already changed)
-            if ($cotisation->getInfos() === $this) {
-                $cotisation->setInfos(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     public function getAdhesionPaid(): ?bool
     {

@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\AdhesionsRepository;
+use App\Repository\CotisationsRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AdhesionsRepository::class)
+ * @ORM\Entity(repositoryClass=CotisationsRepository::class)
  */
-class Adhesions
+class Cotisations
 {
     /**
      * @ORM\Id
@@ -28,10 +28,9 @@ class Adhesions
     private $somme;
 
     /**
-     * @ORM\OneToOne(targetEntity=Infos::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Infos::class, inversedBy="cotisations")
      */
     private $infos;
-
 
     public function getId(): ?int
     {
@@ -67,10 +66,4 @@ class Adhesions
         return $this->infos;
     }
 
-    public function setInfos(?Infos $infos): self
-    {
-        $this->infos = $infos;
-
-        return $this;
-    }
 }

@@ -49,7 +49,7 @@ class DashboardController extends AbstractDashboardController
          yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', Users::class);
          yield MenuItem::linkToCrud('Categories', 'fa fa-tags', Categories::class);
          yield MenuItem::linkToCrud('Evenements', 'fas fa-calendar', Evenements::class);
-         yield MenuItem::linkToCrud('Adhesions', 'fa fa-money', Adhesions::class);
-         yield MenuItem::linkToCrud('Cotisations', 'fa fa-money', Cotisations::class);
+        //  yield MenuItem::linkToCrud('Adhesions', 'fa fa-money', Adhesions::class);
+        //  yield MenuItem::linkToCrud('Cotisations', 'fa fa-money', Cotisations::class);
     }
 }
