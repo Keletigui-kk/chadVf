@@ -23,7 +23,11 @@ class HomeController extends AbstractController
      */
     public function index()
     {
-        $evenement = $this->em->getRepository(Evenements::class)->findAll();
+        $evenement = $this->em->getRepository(Evenements::class)->findBy(
+            [],                   
+            ['id' => 'desc'],    
+            1                   
+        );
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'evenements' => $evenement,
